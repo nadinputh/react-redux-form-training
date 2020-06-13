@@ -14,7 +14,7 @@ class Login extends React.Component {
         return (
             <div>
                 <div className="row justify-content-md-center">
-                    <LoginForm handleSubmit={this.onSubmit}/>
+                    <LoginForm onSubmit={this.onSubmit}/>
                 </div>
             </div>
         );
