@@ -4,10 +4,28 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
+import thunk from 'redux-thunk';
+import reducers from "./reducers";
+
+const composeEnhancers = composeWithDevTools({
+  name: 'react-redux-form', actionsBlacklist: ['REDUX_STORAGE_SAVE']
+});
+
+const middlewares = [
+  thunk
+];
+
+const store = createStore(reducers, composeEnhancers(
+  applyMiddleware(...middlewares)
+));
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
